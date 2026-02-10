@@ -1,0 +1,9 @@
+matplotlib
+numpy
+pandas
+scipy
+scikit-learn
+progressbar2
+terminaltables
+gymnasium
+seaborn
