@@ -1,18 +1,17 @@
 
 # lasso, ridge and elastic net regularization
 import numpy as np
-import math
 
-# li regularization
+# lasso(l1) regularization
 class LassoRegularization():
-    def __init__(self):
-        pass
+    def __init__(self, alpha):
+        self.alpha = alpha
 
     def __call__(self, w):
-        pass
+        return self.alpha * np.linalg.norm(w)
 
     def grad(self, w):
-        pass
+        return self.alpha * np.sign(w)
 
 # l2 regularization
 class RidgeRegularization():
