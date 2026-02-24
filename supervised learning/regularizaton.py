@@ -15,14 +15,14 @@ class LassoRegularization():
 
 # l2 regularization
 class RidgeRegularization():
-    def __init__(self):
-        pass
+    def __init__(self, alpha):
+        self.alpha = alpha
 
-    def __call__(self, *args, **kwds):
-        pass
+    def __call__(self, w):
+        return self.alpha * 0.5 * w.T.dot(w)
 
     def grad(self, w):
-        pass
+        return self.alpha * w
 
 class ElasticNet():
     def __init__(self):
