@@ -13,7 +13,22 @@ class Regressor(object):
         self.w = np.random.uniform(-limit, limit, (n_features, ))
 
     def fit(self, X, y):
-        pass
+        # insert constant ones for bias
+        X = np.insert(X, 0, 1, axis=1)
+        self.training_errors = []
+        self.initialize_weights(n_features=X.shape[1])
+
+        # gradient descent for n_iters
+        for _ in range(self.n_iters):
+            y_pred = X.dot(self.w)
+
+            # calculate l2 loss
+            mse = np.mean(0.5 * (y - y_pred))**2 + self.regularization(self.w)
+            self.training_errors.append(mse)
+
+            # gradient of l2 loss and update weights
+            grad_w = -(y - y_pred).dot(X) + self.regularization.grad(self.w)
+            self.w -= self.learning_rate * grad_w
 
     def predict(self, X):
         pass
