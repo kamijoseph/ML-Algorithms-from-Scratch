@@ -31,7 +31,10 @@ class Regressor(object):
             self.w -= self.learning_rate * grad_w
 
     def predict(self, X):
-        pass
+        # insert constant ones for bias weights
+        X = np.insert(X, 0, 1, axis=1)
+        y_pred = X.dot(self.w)
+        return y_pred
 
 class LinearRegression(Regressor):
     def __init__(self):
