@@ -2,6 +2,12 @@
 # linear regularization
 import numpy as np
 import math
+
+from regularizaton import (
+    RidgeRegularization,
+    LassoRegularization,
+    ElasticNet
+)
 class Regressor(object):
     def __init__(self, n_iters, learning_rate):
         self.n_iters = n_iters
@@ -36,6 +42,7 @@ class Regressor(object):
         y_pred = X.dot(self.w)
         return y_pred
 
+# linear regression without regularizations
 class LinearRegression(Regressor):
     def __init__(self, n_iters=100, learning_rate=0.001, gradient_descent=True):
         self.gradeinet_descent = gradient_descent
@@ -58,9 +65,13 @@ class LinearRegression(Regressor):
             super(LinearRegression, self).fit(X, y)
 
 class LassoRegression(Regressor):
-    def __init__(self):
-        super().__init__()
-        pass
+    def __init__(self, degree, reg_factor, n_iterations=3000, learning_rate=0.01):
+        self.degree = degree
+        self.regularization = LassoRegularization(alpha=reg_factor)
+        super(LassoRegularization).__init__(
+            n_iterations,
+            learning_rate
+        )
 
     def fit(self, X, y):
         pass
