@@ -37,9 +37,15 @@ class Regressor(object):
         return y_pred
 
 class LinearRegression(Regressor):
-    def __init__(self):
-        super().__init__()
-        pass
+    def __init__(self, n_iters=100, learning_rate=0.001, gradient_descent=True):
+        self.gradeinet_descent = gradient_descent
+        self.regularization = lambda x: 0
+        self.regularization.grad = lambda x: 0
+        super(LinearRegression, self).__init__(
+            n_iters = n_iters,
+            learning_rate = learning_rate
+        )
+        
 
     def fit(self, X, y):
         pass
