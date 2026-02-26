@@ -1,11 +1,16 @@
 
 # linear regularization
+import numpy as np
+import math
 class Regressor(object):
-    def __init__(self):
-        pass
+    def __init__(self, n_iters, learning_rate):
+        self.n_iters = n_iters
+        self.learning_rate = learning_rate
 
     def initialize_weights(self, n_features):
-        pass
+        # initializing weights randomly [-1/N, 1/N]
+        limit = 1 / math.sqrt(n_features)
+        self.w = np.random.uniform(-limit, limit, (n_features, ))
 
     def fit(self, X, y):
         pass
