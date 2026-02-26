@@ -45,10 +45,17 @@ class LinearRegression(Regressor):
             n_iters = n_iters,
             learning_rate = learning_rate
         )
-        
-
     def fit(self, X, y):
-        pass
+        # if not gradient descent => least square approximation of w
+
+        if not self.gradient_descent:
+            X = np.insert(X, 0, 1, axis=1)
+            U, S, V = np.linalg.svd(X.T.dot(X))
+            S = np.diag(S)
+            X_sq_reg_in = V.dot(np.linalg.pinv(S)).dot(U.T)
+            self.w = X_sq_reg_in.dot(X.T).dot(y)
+        else:
+            super(LinearRegression, self).fit(X, y)
 
 class LassoRegression(Regressor):
     def __init__(self):
